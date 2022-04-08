@@ -111,7 +111,7 @@ const TableForm: React.FC = () => {
       .then((res:any) => res.json())
       .catch(e => console.log(e))
     } else {
-      window.alert("Довавьте данные")
+      window.alert("Добавьте данные")
     }
     
   }  
