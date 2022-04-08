@@ -14,7 +14,6 @@ export default class Store {
     table = {} as ITable;
     options = ["Lenovo", "Asus", "Aser", "Huawei", "Honor" ];
     tables: ITable[] = [];
-    edit = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -27,21 +26,13 @@ export default class Store {
     setUser(user: IUser) {
         this.user = user;
     }
-    setEdit(bool: boolean) {
-        this.edit = bool;
-    }
     setLoading(bool: boolean) {
         this.isLoading = bool;
     }
     setTable(table: ITable) {
         this.table = table
     }
-    removeTable (id: string)  {
-        this.tables = this.tables.filter(todo => todo._id !== id)
-    }
-    get allTable() {
-        return this.table
-    }
+   
     async login(email: string, password: string) {
         try {
             const response = await AuthService.login(email, password);
@@ -93,14 +84,7 @@ export default class Store {
             this.setLoading(false);
         }
     }
-    async getTable() {
-        try {
-            const response = await TableService.AllTable();
-            return response.data;
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    
     async create(table: ITable) {
         try {
             const response = await TableService.AddTable(table);
